@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { Container, Row, Col } from 'react-bootstrap'
+import FormInput from './components/FormInput';
+import QAList from './components/QAList'
+import { question } from './data'
+import { useState } from 'react';
 
 function App() {
+  const [data, setdata] = useState(question)
+  const addItem = () => {
+    setdata([...question])
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="font text-center color-body">
+      <Container className="p-5">
+
+        <Row className="justify-content-center">
+          <Col sm="4">
+            <div className="fs-3 text-center py-2">اسئله واجوبه شائعه</div>
+          </Col>
+          <Col sm="8">
+            <FormInput data={data} onAdd={addItem} />
+            <QAList data={data} />
+            {data.length ? (<button className="btn-color w-100 my-3">مسح الكل</button>) : null}
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
+
 
 export default App;
