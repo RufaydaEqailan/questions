@@ -9,9 +9,15 @@ function App() {
   const [data, setdata] = useState(question)
 
   const addItem = (newData) => {
-    setdata(newData)
+    setdata([...newData])
   }
-
+  const deleteAllItem = () => {
+    question.splice(0, question.length)
+    setdata([])
+  }
+  const deleteOneItem = (newItems) => {
+    setdata([...newItems])
+  }
   return (
     <div className="font text-center color-body">
       <Container className="p-5">
@@ -22,8 +28,8 @@ function App() {
           </Col>
           <Col sm="8">
             <FormInput data={data} onAdd={addItem} />
-            <QAList data={data} />
-            {data.length ? (<button className="btn-color w-100 my-3">مسح الكل</button>) : null}
+            <QAList data={data} deleteOneItem={deleteOneItem} />
+            {data.length ? (<button className="btn-color w-100 my-3" onClick={deleteAllItem}>مسح الكل</button>) : null}
           </Col>
         </Row>
       </Container>

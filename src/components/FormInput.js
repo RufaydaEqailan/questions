@@ -9,10 +9,11 @@ const FormInput = ({ data, onAdd }) => {
         console.log(data)
         const newItem = { id: Math.random(), qa: qa, an: an };
         data.push(newItem);
-        const newData = [...data];
+        // const newData = [...data];
+        // const newData = [...data, newItem];
         setQa('')
         setAn('')
-        onAdd(newData);
+        onAdd(data);
         // data.push({ id: Math.random(), qa: qa, an: an })
 
 
