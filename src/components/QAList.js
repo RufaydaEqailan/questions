@@ -6,7 +6,7 @@ const QAList = ({ data }) => {
             {data.map((item, index) => {
                 return (
                     <Accordion>
-                        <Accordion.Item eventKey={item.id} key={index}>
+                        <Accordion.Item eventKey={item.id} key={item.id}>
                             <Accordion.Header>
                                 <div className="m-auto">{item.qa}</div>
                             </Accordion.Header>

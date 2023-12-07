@@ -6,11 +6,17 @@ const FormInput = ({ data, onAdd }) => {
     const [an, setAn] = useState('')
 
     const addNewItem = () => {
-        data.push({ id: Math.random(), qa: qa, an: an })
+        console.log(data)
+        const newItem = { id: Math.random(), qa: qa, an: an };
+        data.push(newItem);
+        const newData = [...data];
         setQa('')
         setAn('')
-        console.log(data)
-        onAdd()
+        onAdd(newData);
+        // data.push({ id: Math.random(), qa: qa, an: an })
+
+
+        // onAdd()
     }
     return (
         <Row className="my-3">

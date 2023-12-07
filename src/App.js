@@ -7,9 +7,11 @@ import { useState } from 'react';
 
 function App() {
   const [data, setdata] = useState(question)
-  const addItem = () => {
-    setdata([...question])
+
+  const addItem = (newData) => {
+    setdata(newData)
   }
+
   return (
     <div className="font text-center color-body">
       <Container className="p-5">
