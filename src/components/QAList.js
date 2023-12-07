@@ -2,15 +2,18 @@
 import { Row, Accordion } from 'react-bootstrap';
 // import { question } from '../data';
 const QAList = ({ data, deleteOneItem }) => {
+    const dataLocal = JSON.parse(localStorage.getItem("items"))
     const onDeleteItem = (ID) => {
-        const index = data.findIndex((item) => item.id === ID)
-        data.splice(index, 1)
-        // const newData = [...data]
-        deleteOneItem(data)
+        if (localStorage.getItem != null) {
+            const index = data.findIndex((item) => item.id === ID)
+            data.splice(index, 1)
+            // const newData = [...data]
+            deleteOneItem(data)
+        }
     }
     return (
         <Row>
-            {data.map((item, index) => {
+            {localStorage.getItem("items") != null ? (dataLocal.map((item, index) => {
                 return (
                     <Accordion>
                         <Accordion.Item eventKey={item.id} key={Math.random()}>
@@ -24,7 +27,7 @@ const QAList = ({ data, deleteOneItem }) => {
                         </Accordion.Item>
                     </Accordion>
                 )
-            })}
+            })) : null}
         </Row>
     )
 }

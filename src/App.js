@@ -9,14 +9,20 @@ function App() {
   const [data, setdata] = useState(question)
 
   const addItem = (newData) => {
+    localStorage.setItem("items", JSON.stringify(data))
     setdata([...newData])
   }
   const deleteAllItem = () => {
+    localStorage.removeItem("items")
     question.splice(0, question.length)
     setdata([])
   }
   const deleteOneItem = (newItems) => {
+    localStorage.setItem("items", JSON.stringify(data))
     setdata([...newItems])
+    if (data.length <= 0) {
+      deleteAllItem();
+    }
   }
   return (
     <div className="font text-center color-body">
@@ -29,11 +35,14 @@ function App() {
           <Col sm="8">
             <FormInput data={data} onAdd={addItem} />
             <QAList data={data} deleteOneItem={deleteOneItem} />
-            {data.length ? (<button className="btn-color w-100 my-3" onClick={deleteAllItem}>مسح الكل</button>) : null}
+            {localStorage.getItem("items") != null ?
+              (<button className="btn-color w-100 my-3" onClick={deleteAllItem}>مسح الكل</button>) : null
+            }
           </Col>
         </Row>
       </Container>
     </div>
+
   );
 }
 
